@@ -12,12 +12,14 @@ public class Country {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(unique=true)
+    @Column(unique = true)
     private String name;
-
 
     @ManyToMany(mappedBy = "countries")
     private List<Continent> continents = new ArrayList<Continent>();
+
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
+    private List<City> cities;
 
     public Country() {
     }
@@ -34,4 +36,11 @@ public class Country {
         this.name = name;
     }
 
+    public List<City> getCities() {
+        return cities;
+    }
+
+    public void setContinent(List<Continent> continents) {
+        this.continents.addAll(continents);
+    }
 }

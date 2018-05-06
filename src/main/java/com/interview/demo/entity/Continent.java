@@ -11,13 +11,13 @@ public class Continent {
     @GeneratedValue
     private Long id;
 
-    @Column(unique=true)
+    @Column(unique = true)
     private String name;
 
     @ManyToMany
     @JoinTable(name = "continent_country",
-            joinColumns = { @JoinColumn(name = "fk_continent") },
-            inverseJoinColumns = { @JoinColumn(name = "fk_country") })
+            joinColumns = {@JoinColumn(name = "fk_continent")},
+            inverseJoinColumns = {@JoinColumn(name = "fk_country")})
     private List<Country> countries = new ArrayList<Country>();
 
     public Continent() {
@@ -32,11 +32,15 @@ public class Continent {
         return name;
     }
 
+    public void setName() {
+        this.name = name;
+    }
+
     public List<Country> getCountries() {
         return countries;
     }
 
-    public void setName() {
-        this.name = name;
+    public void setCountry(Country country) {
+        this.countries.add(country);
     }
 }
