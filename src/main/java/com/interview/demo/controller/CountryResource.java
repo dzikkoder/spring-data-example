@@ -61,7 +61,8 @@ public class CountryResource {
                                                   @Valid @RequestBody Country country) throws ContinentNotFoundException {
         return continentRepository.findById(continentId).map(continent -> {
             continent.setCountry(country);
-            country.setContinent(Collections.singletonList(continent));
+            //fun fact: this line will cause a stack overflow on receiving a request on this mapping
+            //country.setContinent(Collections.singletonList(continent));
             return countryRepository.save(country);
         }).orElseThrow(() -> new ContinentNotFoundException("ContinentId " + continentId + " not found"));
     }
@@ -70,14 +71,10 @@ public class CountryResource {
     @DeleteMapping("/countries/{id}")
     public ResponseEntity<?> deleteCountry(@PathVariable Long id) throws CountryNotFoundException {
         return countryRepository.findById(id).map(country -> {
-            Continent continent = em.find(Continent.class, 1L);
-            for (Country associatedCountries : continent.getCountries()) {
-                if (continent.getCountries().size() == 1) {
-                    em.remove(continent);
-                } else {
-                    continent.getCountries().remove(associatedCountries);
-                }
-            }
+            for (Continent associatedContinent : country.getContinents()) {
+                Continent continent = em.find(Continent.class, associatedContinent.getId());
+                continent.getCountries().remove(country);
+          }
             em.remove(country);
 
             return ResponseEntity.ok().build();

@@ -40,6 +40,10 @@ public class Country {
         return cities;
     }
 
+    public List<Continent> getContinents() {
+        return continents;
+    }
+
     public void setContinent(List<Continent> continents) {
         this.continents.addAll(continents);
     }
