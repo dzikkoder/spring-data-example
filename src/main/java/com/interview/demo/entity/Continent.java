@@ -36,10 +36,6 @@ public class Continent {
         this.name = name;
     }
 
-    public List<Country> getCountries() {
-        return countries;
-    }
-
     public void setCountry(Country country) {
         this.countries.add(country);
     }

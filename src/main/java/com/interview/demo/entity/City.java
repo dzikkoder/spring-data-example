@@ -1,6 +1,6 @@
 package com.interview.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -14,9 +14,9 @@ public class City {
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "country_id", nullable = false)
-    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    @JsonBackReference
     private Country country;
 
     public City() {
@@ -33,6 +33,14 @@ public class City {
 
     public String getName() {
         return name;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
 }
