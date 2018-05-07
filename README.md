@@ -1,7 +1,7 @@
 Project info:
 
 build the application with
-mvn clean package
+mvn package dockerfile:build
 
 run the application in a Docker container with
 docker-compose up
