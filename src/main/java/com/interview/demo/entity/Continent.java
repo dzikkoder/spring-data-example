@@ -1,8 +1,8 @@
 package com.interview.demo.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Continent {
@@ -18,7 +18,7 @@ public class Continent {
     @JoinTable(name = "continent_country",
             joinColumns = {@JoinColumn(name = "fk_continent")},
             inverseJoinColumns = {@JoinColumn(name = "fk_country")})
-    private List<Country> countries = new ArrayList<Country>();
+    private Set<Country> countries = new HashSet<Country>();
 
     public Continent() {
 
@@ -34,6 +34,10 @@ public class Continent {
 
     public void setName() {
         this.name = name;
+    }
+
+    public Set<Country> getCountries() {
+        return countries;
     }
 
     public void setCountry(Country country) {

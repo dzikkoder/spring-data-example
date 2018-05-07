@@ -51,9 +51,9 @@ public class CountryResource {
         return continentRepository.findById(continentId).map(continent -> {
             Optional<Country> possiblyExistingCountry = countryRepository.findByName(newCountry.getName());
             Country countryToSave = possiblyExistingCountry.orElse(newCountry);
-                continent.setCountry(countryToSave);
-                countryToSave.setContinent(Collections.singletonList(continent));
-                return countryRepository.save(countryToSave);
+            continent.setCountry(countryToSave);
+            countryToSave.setContinent(Collections.singletonList(continent));
+            return countryRepository.save(countryToSave);
 
         }).orElseThrow(() -> new ContinentNotFoundException("ContinentId " + continentId + " not found"));
     }

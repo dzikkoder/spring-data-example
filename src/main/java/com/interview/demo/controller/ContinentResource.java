@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 public class ContinentResource {
@@ -34,7 +35,7 @@ public class ContinentResource {
     }
 
     @GetMapping("/continents/{id}/countries")
-    public List<Country> getCountriesInContinentWithId(@PathVariable Long id) throws ContinentNotFoundException {
+    public Set<Country> getCountriesInContinentWithId(@PathVariable Long id) throws ContinentNotFoundException {
         Optional<Continent> continent = continentRepository.findById(id);
 
         if (!continent.isPresent())

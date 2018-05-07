@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 public class CityResource {
@@ -51,7 +51,7 @@ public class CityResource {
     }
 
     @GetMapping("/countries/{id}/cities")
-    public List<City> getCitiesInCountryWithId(@PathVariable Long id) throws CountryNotFoundException {
+    public Set<City> getCitiesInCountryWithId(@PathVariable Long id) throws CountryNotFoundException {
         Optional<Country> country = countryRepository.findById(id);
 
         if (!country.isPresent())

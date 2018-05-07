@@ -3,8 +3,9 @@ package com.interview.demo.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Country {
@@ -19,10 +20,10 @@ public class Country {
 
     @ManyToMany(mappedBy = "countries")
     @JsonBackReference
-    private List<Continent> continents = new ArrayList<>();
+    private Set<Continent> continents = new HashSet<>();
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
-    private List<City> cities = new ArrayList<>();
+    private Set<City> cities = new HashSet<>();
 
     public Country() {
     }
@@ -39,7 +40,7 @@ public class Country {
         this.name = name;
     }
 
-    public List<City> getCities() {
+    public Set<City> getCities() {
         return cities;
     }
 
@@ -47,7 +48,7 @@ public class Country {
         this.cities.add(city);
     }
 
-    public List<Continent> getContinents() {
+    public Set<Continent> getContinents() {
         return continents;
     }
 
