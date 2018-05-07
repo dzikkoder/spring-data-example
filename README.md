@@ -1,12 +1,7 @@
-Project info:
+1. Build the application with
+	mvn package dockerfile:build
 
-build the application with
-mvn package dockerfile:build
+2. Run the application in a Docker container with
+	docker-compose up
 
-run the application in a Docker container with
-docker-compose up
-
-Sample rest queries:
-
-curl
-TODO
+3. Sample rest queries are in queries.sh

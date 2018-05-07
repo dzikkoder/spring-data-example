@@ -1,0 +1,8 @@
+version: "2.2"
+services:
+    spring-data-demo:
+        image: spring-data-demo
+        ports:
+            - 8080:8080
+        entrypoint: "java -Djava.security.egd=file:/dev/./urandom -jar spring-data-demo.jar"
+
